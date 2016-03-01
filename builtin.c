@@ -16,20 +16,45 @@
  */
 
 #include <stdio.h>
+#include <string.h>
 #include "parser.h"
 #include "context.h"
 #include "eval.h"
 
+static void	__custom_printf(const char *str)
+{
+	int	i;
+	int	len;
+
+	len = strlen(str);
+	for (i = 0; i < len; i++)
+	{
+		if (str[i] == '\\')
+		{
+			if (str[++i] == '\\')
+				putchar('\\');
+			else if (str[i] == 't')
+				putchar('\t');
+			else if (str[i] == 'n')
+				putchar('\n');
+			else if (str[i] == 'r')
+				putchar('\r');
+		}
+		else
+		{
+			putchar(str[i]);
+		}
+	}
+}
+
 node_t	*builtin_echo(node_t *args, context_t *ctx)
 {
 	node_t		*tmp;
-	node_t		*iterator;
 	variable_t	*var;
 
 	if (args == NULL)
 		printf("(NULL)");
 	tmp = args;
-	iterator = args;
 	while (tmp != NULL)
 	{
 		if (tmp->type == N_CALL)
@@ -37,7 +62,7 @@ node_t	*builtin_echo(node_t *args, context_t *ctx)
 
 		if (tmp->type == N_STR)
 		{
-			printf(tmp->u1.value);
+			__custom_printf(tmp->u1.value);
 		}
 		else if (tmp->type == N_NUMBER)
 		{
@@ -49,13 +74,11 @@ node_t	*builtin_echo(node_t *args, context_t *ctx)
 			if (var == NULL)
 				printf("(NULL)");
 			else if (var->type == V_STRING)
-				printf(var->content.value);
+				__custom_printf(var->content.value);
 			else
 				printf("%d", var->content.number);
 		}
-		tmp = iterator->next;
-		iterator = iterator->next;
+		tmp = tmp->next;
 	}
 	return (NULL);
 }
-
