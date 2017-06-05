@@ -18,9 +18,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "context.h"
-#include "utils.h"
-#include "builtin.h"
+#include <beastlang/context.h>
+#include <beastlang/utils.h>
+#include <beastlang/builtin.h>
 
 variable_t	*variable_new(char *name, variable_type_t type, int number, char *value)
 {

@@ -17,9 +17,9 @@
 
 #include <stdio.h>
 #include <string.h>
-#include "parser.h"
-#include "context.h"
-#include "eval.h"
+#include <beastlang/parser.h>
+#include <beastlang/context.h>
+#include <beastlang/eval.h>
 
 static void	__custom_printf(const char *str)
 {

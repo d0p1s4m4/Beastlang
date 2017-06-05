@@ -18,9 +18,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "lexer.h"
-#include "parser.h"
-#include "context.h"
+#include <beastlang/lexer.h>
+#include <beastlang/parser.h>
+#include <beastlang/context.h>
 
 node_t	*eval_expr(node_t *expr, context_t *ctx)
 {

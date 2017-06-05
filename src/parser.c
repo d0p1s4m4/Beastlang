@@ -17,10 +17,10 @@
 
 #include <stdlib.h>
 
-#include "error.h"
-#include "lexer.h"
-#include "parser.h"
-#include "utils.h"
+#include <beastlang/error.h>
+#include <beastlang/lexer.h>
+#include <beastlang/parser.h>
+#include <beastlang/utils.h>
 
 static void	node_push(node_t **nodes, node_t *node)
 {

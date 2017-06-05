@@ -17,9 +17,9 @@
 
 #include <stdlib.h>
 #include <string.h>
-#include "lexer.h"
-#include "error.h"
-#include "utils.h"
+#include <beastlang/lexer.h>
+#include <beastlang/error.h>
+#include <beastlang/utils.h>
 
 token_t	*token_pop(token_t **stack)
 {

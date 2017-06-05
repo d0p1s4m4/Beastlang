@@ -19,8 +19,8 @@
 #include <stdio.h>
 #include <unistd.h>
 
-#include "error.h"
-#include "eval.h"
+#include <beastlang/error.h>
+#include <beastlang/eval.h>
 
 int	my_usage(char *str)
 {
