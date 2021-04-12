@@ -1,36 +1,25 @@
-CC	= clang
+CC	?= gcc
+AR	= ar
 RM	= rm -f
 
-CFLAGS	+= -ansi -pedantic -Wall -Werror -Wextra -Os -I include
+CFLAGS	+= -ansi -pedantic -Werror -Wall -Wextra
 LDFLAGS	+=
 
-NAME	= beast
-SRCS	= main.c \
-	  error.c \
-	  lexer.c \
-	  utils.c \
-	  parser.c \
-	  context.c \
-	  eval.c \
-	  builtin.c
-OBJS	= $(addprefix src/, $(SRCS:.c=.o))
+SRCDIR	= src
 
-all: $(NAME)
+all: beastlang
 
-$(NAME): $(OBJS)
-	$(CC) -o $@ $^ $(LDFLAGS)
+%.o: %.c
+	$(CC) $(CFLAGS) -c -o $@ $<
 
-test:
-	$(MAKE) -f test.makefile
+include src/build.mk
 
 clean:
-	$(RM) $(OBJS)
-	$(MAKE) -f test.makefile clean
+	$(RM) $(BIN_OBJS) $(LIB_OBJS)
 
 fclean: clean
-	$(RM) $(NAME)
-	$(MAKE) -f test.makefile fclean
+	$(RM) beastlang libbeast.a
 
 re: fclean all
 
-.PHONY: all clean fclean re test
+.PHONY: all clean fclean re

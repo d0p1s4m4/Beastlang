@@ -1,0 +1,4 @@
+beastlang
+*.a
+*.so
+*.o
